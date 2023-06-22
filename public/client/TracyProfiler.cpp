@@ -486,7 +486,10 @@ static const char* GetHostInfo()
 #  ifdef __MINGW32__
         ptr += sprintf( ptr, "OS: Windows %i.%i.%i (MingW)\n", (int)ver.dwMajorVersion, (int)ver.dwMinorVersion, (int)ver.dwBuildNumber );
 #  else
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wformat"
         ptr += sprintf( ptr, "OS: Windows %i.%i.%i\n", ver.dwMajorVersion, ver.dwMinorVersion, ver.dwBuildNumber );
+#pragma clang diagnostic pop
 #  endif
     }
 #elif defined __linux__
